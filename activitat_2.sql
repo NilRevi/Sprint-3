@@ -71,11 +71,36 @@ WHERE country = 'Germany';
 
 /*NIVELL 3*/
 /*EXERCICI 1*/
+/*ALTER TABLE credit_card
+ADD FOREIGN KEY (id) REFERENCES transaction(credit_card_id);*/
+SHOW CREATE TABLE credit_card;
+SHOW CREATE TABLE user;
+SHOW CREATE TABLE transaction;
+
+ALTER TABLE credit_card 
+DROP foreign key credit_card_ibfk_1;
+ALTER TABLE user DROP foreign key user_ibfk_1;
+ALTER TABLE transaction DROP foreign key transaction_ibfk_1;
+
+AlTER TABLE transaction
+ADD FOREIGN KEY (credit_card_id) REFERENCES credit_card(id);
+AlTER TABLE transaction
+ADD FOREIGN KEY (user_id) REFERENCES user(id);
+
 ALTER TABLE credit_card
-ADD FOREIGN KEY (id) REFERENCES transaction(credit_card_id);
+ADD column fecha_actual DATE;
+
+ALTER TABLE company
+DROP website;
+
+ALTER TABLE credit_card MODIFY id varchar(20);
+ALTER TABLE credit_card MODIFY iban varchar(50);
+ALTER TABLE credit_card MODIFY pin varchar(4);
+ALTER TABLE credit_card MODIFY expiring_date varchar(20);
+
+
 
 select * from user;
-CREATE INDEX idx_credit_card_id ON transaction(credit_card_id);
 
 /*EXERCICI 2*/
 CREATE VIEW InformeTecnico as
